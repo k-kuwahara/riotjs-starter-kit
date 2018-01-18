@@ -5,11 +5,10 @@
   "main": "webpack.config.js",
   "scripts": {
     "src": "cp -R ../src ./",
-    "html": "mv src/index.html build",
     "bundle": "webpack --watch --progress --colors",
-    "build": "npm-run-all src html bundle",
+    "build": "npm-run-all src bundle",
     "serve": "webpack-dev-server --inline --watch --hot",
-    "dev": "npm-run-all src html serve"
+    "dev": "npm-run-all src serve"
   },
   "author": "webkid.io",
   "license": "MIT",

@@ -1,8 +1,9 @@
 **/node_modules
 **/*.log
-**/build
+**/build/*
 **/package-lock.json
 **/src
+!/src
 
 .idea
 
