@@ -42,7 +42,8 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.js', '.tag', '.css']
   },
-  devtool: 'cheap-source-map',
+  // Please uncomment as necessary
+  // devtool: 'cheap-source-map',
   plugins: [
     new webpack.ProvidePlugin({
       riot: 'riot',
