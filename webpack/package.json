@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "src": "cp -R ../src ./",
+    "html": "cp ./src/index.html ./build/",
     "bundle": "webpack --watch --progress --colors",
     "build": "npm-run-all src bundle",
     "serve": "webpack-dev-server --inline --watch --hot",
