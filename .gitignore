@@ -2,9 +2,9 @@
 **/*.log
 **/build/*
 **/package-lock.json
-**/src
-!/src
+gulp/js/
 
 .idea
-
 .DS_Store
+
+!.gitkeep

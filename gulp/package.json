@@ -1,0 +1,47 @@
+{
+  "name": "riotjs-starter-kit",
+  "version": "1.1.0",
+  "description": "A starter kit for Riot.js of gulp",
+  "main": "webpack.config.js",
+  "scripts": {
+    "src": "cp -R ../src ./",
+    "html": "cp ./src/index.html ./build/",
+    "compile": "gulp compile",
+    "buble": "gulp buble",
+    "riot": "gulp riot",
+    "eslint": "gulp eslint",
+    "gulp": "gulp",
+    "build": "npm-run-all src html gulp",
+    "serve": "http-server ./build/",
+    "dev": "npm-run-all src html serve"
+  },
+  "author": {
+    "name": "k-kuwahara",
+    "email": "zensin0082@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "normalize.css": "^7.0.0",
+    "npm-run-all": "^4.1.1",
+    "riot": "^3.8.1",
+    "riot-route": "^3.1.2",
+    "riot-tag-loader": "^2.0.2",
+    "riotcontrol": "0.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wbkd/riotjs-startkit.git"
+  },
+  "devDependencies": {
+    "buble": "^0.16.0",
+    "gulp": "^3.9.1",
+    "gulp-buble": "^0.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^4.0.1",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-riot": "^1.1.1",
+    "gulp-uglify": "^3.0.0",
+    "http-server": "^0.11.1"
+  }
+}
