@@ -24,7 +24,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.js|\.tag$/,
+        test: /\.(js|tag)$/,
         exclude: /node_modules/,
         enforce: 'post',
         use: 'buble-loader',
