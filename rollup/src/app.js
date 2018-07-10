@@ -1,5 +1,6 @@
 import riot from 'riot'
-import './components/app.tag'
+import './components'
+import './js/mixin'
 
 riot.mount('app', {
    title: 'Hello Riot.js !!'

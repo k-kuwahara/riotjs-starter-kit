@@ -3498,6 +3498,51 @@
 
   var riot$1 = unwrapExports(riot_1);
 
+  riot$1.tag2(
+    "app",
+    '<h1>{opts.title}</h1> <color-palette riot-value="{color}" onchange="{change}"></color-palette> <p>Click the color.</p>',
+    'app,[data-is="app"]{ position: absolute; top: 0; right: 0; bottom: 0; left: 0; padding: 1em; text-align: center; background: #eee; }',
+    'riot-style="background: {color}"',
+    function(opts) {
+      const self = this;
+      self.color = "";
+
+      this.change = function(e) {
+        self.color = e.target.value;
+      }.bind(this);
+    }
+  );
+
+  riot$1.tag2(
+    "color-palette",
+    '<div each="{c in colors}" riot-style="background: {c}" class="{selected: c == value}" onclick="{click}"></div>',
+    'color-palette,[data-is="color-palette"]{ display: inline-block; padding: .5em; line-height: 0; background: white; -webkit-transition: -webkit-box-shadow .2s; transition: -webkit-box-shadow .2s; transition: box-shadow .2s; transition: box-shadow .2s, -webkit-box-shadow .2s; } color-palette:hover,[data-is="color-palette"]:hover{ -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .5); box-shadow: 0 1px 5px rgba(0, 0, 0, .5); } color-palette div,[data-is="color-palette"] div{ display: inline-block; width: 2.8em; height: 2.8em; position: relative; cursor: pointer; z-index: 1; -webkit-box-sizing: border-box; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-transition: -webkit-box-shadow .2s; transition: -webkit-box-shadow .2s; transition: box-shadow .2s; transition: box-shadow .2s, -webkit-box-shadow .2s; } color-palette div:hover,[data-is="color-palette"] div:hover{ z-index: 2; -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, .5); box-shadow: 0 2px 10px rgba(0, 0, 0, .5); } color-palette div:hover,[data-is="color-palette"] div:hover,color-palette div.selected,[data-is="color-palette"] div.selected{ border: 3px solid rgba(255, 255, 255, .7); }',
+    "",
+    function(opts) {
+      const self = this;
+
+      self.value = opts.value || "";
+      self.colors = opts.colors || [
+        "#edc951",
+        "#eb6841",
+        "#cc2a36",
+        "#4f372d",
+        "#00a0b0"
+      ];
+
+      this.click = function(e) {
+        self.root.value = self.value = e.item.c;
+
+        self.triggerDomEvent("change");
+        this.skipSync();
+      }.bind(this);
+
+      self.on("sync", function() {
+        self.value = opts.value;
+      });
+    }
+  );
+
   /**
    * syncEvent
    * https://github.com/cognitom/riot-mixin-pack/tree/master/sync-event
@@ -3545,51 +3590,6 @@
       }, 0);
     }
   });
-
-  riot$1.tag2(
-    "color-palette",
-    '<div each="{c in colors}" riot-style="background: {c}" class="{selected: c == value}" onclick="{click}"></div>',
-    'color-palette,[data-is="color-palette"]{ display: inline-block; padding: .5em; line-height: 0; background: white; -webkit-transition: -webkit-box-shadow .2s; transition: -webkit-box-shadow .2s; transition: box-shadow .2s; transition: box-shadow .2s, -webkit-box-shadow .2s; } color-palette:hover,[data-is="color-palette"]:hover{ -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .5); box-shadow: 0 1px 5px rgba(0, 0, 0, .5); } color-palette div,[data-is="color-palette"] div{ display: inline-block; width: 2.8em; height: 2.8em; position: relative; cursor: pointer; z-index: 1; -webkit-box-sizing: border-box; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-transition: -webkit-box-shadow .2s; transition: -webkit-box-shadow .2s; transition: box-shadow .2s; transition: box-shadow .2s, -webkit-box-shadow .2s; } color-palette div:hover,[data-is="color-palette"] div:hover{ z-index: 2; -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, .5); box-shadow: 0 2px 10px rgba(0, 0, 0, .5); } color-palette div:hover,[data-is="color-palette"] div:hover,color-palette div.selected,[data-is="color-palette"] div.selected{ border: 3px solid rgba(255, 255, 255, .7); }',
-    "",
-    function(opts) {
-      const self = this;
-
-      self.value = opts.value || "";
-      self.colors = opts.colors || [
-        "#edc951",
-        "#eb6841",
-        "#cc2a36",
-        "#4f372d",
-        "#00a0b0"
-      ];
-
-      this.click = function(e) {
-        self.root.value = self.value = e.item.c;
-
-        self.triggerDomEvent("change");
-        this.skipSync();
-      }.bind(this);
-
-      self.on("sync", function() {
-        self.value = opts.value;
-      });
-    }
-  );
-
-  riot$1.tag2(
-    "app",
-    '<h1>{opts.title}</h1> <color-palette riot-value="{color}" onchange="{change}"></color-palette> <p>Click the color.</p>',
-    'app,[data-is="app"]{ position: absolute; top: 0; right: 0; bottom: 0; left: 0; padding: 1em; text-align: center; background: #eee; }',
-    'riot-style="background: {color}"',
-    function(opts) {
-      const self = this;
-      self.color = "";
-
-      this.change = function(e) {
-        self.color = e.target.value;
-      }.bind(this);
-    }
-  );
 
   riot$1.mount("app", {
     title: "Hello Riot.js !!"

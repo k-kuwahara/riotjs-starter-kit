@@ -6,7 +6,6 @@
     onclick={ click }></div>
 
   <script>
-    import '../js/mixin'
     const self = this
     let flag = false
 

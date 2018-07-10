@@ -6,8 +6,6 @@
   <p>Click the color.</p>
 
   <script>
-    import './color-palette.tag'
-
     const self = this
     self.color = ''
 
