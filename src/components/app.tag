@@ -2,6 +2,7 @@ import './color-palette.tag'
 
 <app style="background: { color }">
 
+  <h1>{ opts.title }</h1>
   <color-palette value={ color } onchange={ change } />
 
   <p>Click the color.</p>

@@ -7,7 +7,7 @@
     "src": "cp -R ../src ./",
     "dev": "run-s build:clean build:img build:font build:html watch",
     "build": "run-s build:clean build:img build:font build:js",
-    "build:clean": "rm -rf public && mkdir public && cp -R src/assets/img public",
+    "build:clean": "npm run src && rm -rf public && mkdir public && cp -R src/assets/img public",
     "build:img": "imagemin src/assets/img/**/* --out-dir=public/img",
     "build:font": "cp -r src/assets/font public/font",
     "build:html": "cp src/index.html public",
