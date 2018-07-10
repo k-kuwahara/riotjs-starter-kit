@@ -3498,13 +3498,62 @@
 
   var riot$1 = unwrapExports(riot_1);
 
+  /**
+   * syncEvent
+   * https://github.com/cognitom/riot-mixin-pack/tree/master/sync-event
+   */
+  riot$1.mixin({
+    /** Init mixin on each tag */
+    init: function() {
+      var self = this;
+      self._shouldSyncFromOpts = true;
+      self.on("update", function() {
+        if (self._shouldSyncFromOpts) self.trigger("sync");
+        self._shouldSyncFromOpts = true;
+      });
+    },
+    /** Skip sync event once */
+    skipSync: function() {
+      this._shouldSyncFromOpts = false;
+      return this; // return this for method chain
+    }
+  });
+
+  /**
+   * domEvent
+   * https://github.com/cognitom/riot-mixin-pack/tree/master/dom-event
+   */
+  riot$1.mixin({
+    /**
+     * Trigger Event on DOM (root element of the tag)
+     * @param { string } eventName - the name of the event. ex: 'change'
+     */
+    triggerDomEvent: function(eventName) {
+      var self = this;
+      setTimeout(function() {
+        var e;
+        if (typeof Event == "function") {
+          // Standard browsers
+          e = new Event(eventName);
+        } else {
+          // IE 9 ~ 11
+          e = document.createEvent("Event");
+          e.initEvent(eventName, true, true);
+        }
+        /** dispatch an event */
+        self.root.dispatchEvent(e);
+      }, 0);
+    }
+  });
+
   riot$1.tag2(
     "color-palette",
     '<div each="{c in colors}" riot-style="background: {c}" class="{selected: c == value}" onclick="{click}"></div>',
     'color-palette,[data-is="color-palette"]{ display: inline-block; padding: .5em; line-height: 0; background: white; -webkit-transition: -webkit-box-shadow .2s; transition: -webkit-box-shadow .2s; transition: box-shadow .2s; transition: box-shadow .2s, -webkit-box-shadow .2s; } color-palette:hover,[data-is="color-palette"]:hover{ -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .5); box-shadow: 0 1px 5px rgba(0, 0, 0, .5); } color-palette div,[data-is="color-palette"] div{ display: inline-block; width: 2.8em; height: 2.8em; position: relative; cursor: pointer; z-index: 1; -webkit-box-sizing: border-box; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-transition: -webkit-box-shadow .2s; transition: -webkit-box-shadow .2s; transition: box-shadow .2s; transition: box-shadow .2s, -webkit-box-shadow .2s; } color-palette div:hover,[data-is="color-palette"] div:hover{ z-index: 2; -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, .5); box-shadow: 0 2px 10px rgba(0, 0, 0, .5); } color-palette div:hover,[data-is="color-palette"] div:hover,color-palette div.selected,[data-is="color-palette"] div.selected{ border: 3px solid rgba(255, 255, 255, .7); }',
     "",
     function(opts) {
-      var self = this;
+      const self = this;
+
       self.value = opts.value || "";
       self.colors = opts.colors || [
         "#edc951",

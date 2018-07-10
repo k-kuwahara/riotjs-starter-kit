@@ -2,8 +2,6 @@
 **/*.log
 **/build/*
 **/npm-debug.log
-**/src
-!/src
 
 .idea
 

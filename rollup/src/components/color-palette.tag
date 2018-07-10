@@ -6,8 +6,10 @@
     onclick={ click }></div>
 
   <script>
-    var self = this
-    var flag = false
+    import '../js/mixin'
+    const self = this
+    let flag = false
+
     self.value = opts.value || ''
     self.colors = opts.colors || [
       '#edc951',

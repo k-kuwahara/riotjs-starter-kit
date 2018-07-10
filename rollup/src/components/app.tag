@@ -1,5 +1,3 @@
-import './color-palette.tag'
-
 <app style="background: { color }">
 
   <h1>{ opts.title }</h1>
@@ -8,6 +6,8 @@ import './color-palette.tag'
   <p>Click the color.</p>
 
   <script>
+    import './color-palette.tag'
+
     const self = this
     self.color = ''
 
