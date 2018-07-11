@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>RiotControl Demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="todo.css">
+    <script src="https://rawgit.com/riot/riot/master/riot%2Bcompiler.js"></script>
+    <script src="https://rawgit.com/riot/route/master/dist/route%2Btag.js"></script>
+  </head>
+
+  <body>
+
+    <item-app></item-app>
+
+    <script src="riotcontrol.js"></script>
+    <script src="itemstore.js"></script>
+    <script src="item-detail.tag" type="riot/tag"></script>
+    <script src="item-app.tag" type="riot/tag"></script>
+
+    <script>
+      const itemStore = new ItemStore()
+      RiotControl.addStore(itemStore)
+      riot.mount('item-app') // Kickoff the Riot app.
+      // Define router function
+      const router = (page,id) => {
+        if (page == 'add')
+          RiotControl.trigger('route_item_add')
+        else
+          RiotControl.trigger('route_item', id)
+      }
+      route(router)
+      route.start(true);
+    </script>
+
+  </body>
+
+</html>
