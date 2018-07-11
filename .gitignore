@@ -1,6 +1,5 @@
 **/node_modules
 **/*.log
-**/build/*
 gulp/js/
 **/npm-debug.log
 
