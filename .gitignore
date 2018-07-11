@@ -1,8 +1,8 @@
 **/node_modules
 **/*.log
 **/build/*
-**/package-lock.json
 gulp/js/
+**/npm-debug.log
 
 .idea
 .DS_Store
